@@ -24,6 +24,9 @@ h1 {
 	justify-content: space-between;
 }
 
+
+/* Position relative is needed to make sure video width doesn't overflow the box */
+
 @media (min-width: 992px) {
 	.login-screen {
 		display: flex;
@@ -31,6 +34,12 @@ h1 {
 		position: relative;
 	}
 }
+
+
+/* Z-index is needed to put login screen behind everything else */
+
+
+/* Object-fit: fill is needed to make sure the login screen fills the box */
 
 .video {
 	height: 100%;
@@ -40,7 +49,7 @@ h1 {
 	z-index: -1;
 }
 
-.login-screen .footer-content {
+.login-screen footer .footer-content {
 	display: flex;
 	flex-direction: row;
 	padding-left: 40px;
@@ -48,21 +57,31 @@ h1 {
 	align-items: center;
 }
 
+
+/* Riot games logo */
+
 .company-logo {
 	height: 48px;
 }
 
+
+/* Vertical line between riot logo and controns */
+
 .divider {
 	width: 1px;
 	height: 64px;
+	/* Fade out effect */
 	background: radial-gradient(ellipse, #785A28 0%, rgba(255, 255, 255, 0) 100%);
 	margin-left: 40px;
 	margin-right: 1rem;
 }
 
+
+/* Disable animations and music checkboxes */
+
 .controls-content {
 	font: 400 1rem/1.4 Roboto;
-	color: #A09B7C;
+	color: #c4b998;
 }
 
 
@@ -75,12 +94,18 @@ h1 {
 	background-color: #010A13;
 }
 
+
+/* Main should have flex-grow now but min-width is desirable */
+
 @media (min-width: 992px) {
 	.main {
 		flex-grow: 0;
 		min-width: 278px;
 	}
 }
+
+
+/* Max width is needed because without it main-content would be too big */
 
 .main-content {
 	display: flex;
@@ -90,11 +115,17 @@ h1 {
 	max-width: 278px;
 }
 
+
+/* Removes max-width because main-content needs to scale with main */
+
 @media (min-width: 992px) {
 	.main-content {
 		max-width: unset;
 	}
 }
+
+
+/* Input password */
 
 @media (min-width: 992px) {
 	.main-content {
@@ -112,6 +143,9 @@ h1 {
 	padding: 1rem;
 }
 
+
+/* League of Legends logo */
+
 .game-logo {
 	margin: 0 auto;
 	margin-top: 2rem;
@@ -119,42 +153,82 @@ h1 {
 	height: 64px;
 }
 
+
+/* Sign in heading */
+
 .header-content h1 {
-	color: #F0E6D2;
+	color: #c4b998;
 	margin-bottom: 2rem;
 	font: 500 1.2rem/1.4 Roboto;
 	text-transform: uppercase;
 }
 
+
+/* Header labels */
+
 .header-content label {
 	margin-bottom: .2rem;
 	font: 400 1rem/1.4 Roboto;
-	color: #A09B7C;
+	color: #c4b998;
 }
 
-.header-content input[type=text] {
+
+/* Input text and password */
+
+.header-content input[type=text],
+input[type=password] {
 	border: 1px solid #785A28;
 	background-color: #000306;
 	height: 36px;
 	margin-bottom: 1rem;
 	font: 300 1rem/1 Roboto;
 	color: #fff;
-	text-indent: .2rem;
+	text-indent: .5rem;
 	padding: 0;
+	outline: 0;
 }
+
+
+/* Input text and password focus */
+
+.header-content input[type=text]:focus,
+input[type=password]:focus {
+	/* Top right and left bottom */
+	border-color: #795b52 #aa8c53 #c7a965;
+	background: linear-gradient(to top, rgba(255, 255, 255, .1), rgba(255, 255, 255, 0))
+}
+
+
+/* Input password */
+
+.header-content input[type=password] {
+	letter-spacing: 4px;
+	font: 600 1rem/1.4 Roboto;
+}
+
+
+/* Remember me checkbox */
 
 .header-content input[type=checkbox] {
 	margin-bottom: 3rem;
 }
 
+
+/* Region/lang button */
+
 .header-content button {
 	background-color: transparent;
-	color: #C8AA6E;
+	color: #c9aa71;
 	border: 0;
 	outline: 0;
 	padding: 0;
 	text-align: left;
 	font: 300 1rem/1.4 Roboto;
+	cursor: pointer;
+}
+
+.header-content button:hover {
+	color: #f1e6d0;
 }
 
 
@@ -165,6 +239,9 @@ h1 {
 	flex-direction: column;
 	padding: 1rem;
 }
+
+
+/* Sign in button */
 
 .footer-content button {
 	background-color: #1E2328;
@@ -179,10 +256,20 @@ h1 {
 	box-shadow: inset 0 0 4px #000;
 }
 
+
+/* Footer links */
+
 .footer-content a {
-	color: #0296AA;
+	color: #257372;
 	font: 300 1rem/1.4 Roboto;
 }
+
+.footer-content a:hover {
+	color: #5cb2b1;
+}
+
+
+/* Version container, no padding */
 
 .version-content {
 	height: 40px;
@@ -193,6 +280,6 @@ h1 {
 }
 
 .version-content span {
-	color: #1E282D;
+	color: #c4b998;
 	font: 300 1rem/1.4 Roboto;
 }
