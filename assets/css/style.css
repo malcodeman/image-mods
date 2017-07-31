@@ -97,10 +97,13 @@ h1 {
 
 /* Main should have flex-grow now but min-width is desirable */
 
+
+/* Min width takes border-left into account */
+
 @media (min-width: 992px) {
 	.main {
 		flex-grow: 0;
-		min-width: 278px;
+		min-width: 279px;
 	}
 }
 
@@ -112,7 +115,7 @@ h1 {
 	flex-direction: column;
 	justify-content: space-between;
 	width: 100%;
-	max-width: 278px;
+	max-width: 279px;
 }
 
 
@@ -130,7 +133,6 @@ h1 {
 @media (min-width: 992px) {
 	.main-content {
 		border-left: 1px solid #1E282D;
-		border-right: 1px solid #1E282D;
 	}
 }
 
