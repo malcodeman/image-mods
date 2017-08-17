@@ -250,12 +250,24 @@ input[type=password]:focus {
 	border: 2px solid #5C5B57;
 	outline: 0;
 	padding: 0;
-	height: 36px;
+	height: 40px;
 	margin-bottom: 4rem;
 	color: #5C5B57;
-	font: 400 1.2rem/1.4 Roboto;
+	font: 400 1.1rem/1.2 Roboto;
 	text-transform: uppercase;
 	box-shadow: inset 0 0 4px #000;
+	transition: background-color 2s ease;
+}
+
+
+/* Sign in button when active */
+
+.footer-content .active {
+	/* Top right and left bottom */
+	border-color: #08BFB6 #0496AA #005C83;
+	background-color: #10161E;
+	color: #b2d9db;
+	cursor: pointer;
 }
 
 
@@ -282,6 +294,6 @@ input[type=password]:focus {
 }
 
 .version-content span {
-	color: #c4b998;
-	font: 300 1rem/1.4 Roboto;
+	color: #1E282D;
+	font: 400 1rem/1 Roboto;
 }

@@ -18,9 +18,26 @@ function disableMusic() {
     }
 }
 
+function activeSignIn() {
+    "use strict";
+    var username, password, sign_in;
+    username = document.getElementById("username").value;
+    password = document.getElementById("password").value;
+    sign_in = document.getElementById("sign_in");
+    if (username.length > 0 && password.length > 0) {
+        sign_in.classList.add("active");
+    } else {
+        if (sign_in.classList.contains("active")) {
+            sign_in.classList.remove("active");
+        }
+    }
+}
+
 function main() {
     "use strict";
     document.getElementById("disable_animations").addEventListener("click", disableAnimations);
     document.getElementById("disable_music").addEventListener("click", disableMusic);
+    document.getElementById("username").addEventListener("input", activeSignIn);
+    document.getElementById("password").addEventListener("input", activeSignIn);
 }
 main();
