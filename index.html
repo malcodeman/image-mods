@@ -5,7 +5,8 @@
 <link href="assets/css/style.css" rel="stylesheet" />
 <div class="page">
     <div class="login-screen">
-        <video class="video" loop="loop" muted="muted" autoplay="autoplay" src="assets/images/login-screens/shadow_kayn_login_screen.mp4"></video>
+        <video id="login_screen" class="video" autoplay="autoplay" loop="loop" muted="muted" src="assets/images/login-screens/blood_moon_diana.mp4"></video>
+        <audio id="login_music" autoplay="autoplay" loop="loop" src="assets/music/blood_moon_diana.mp3"></audio>
         <!-- Place for another element -->
         <header></header>
         <footer>
@@ -14,11 +15,11 @@
                 <div class="divider"></div>
                 <div class="controls-content">
                     <div>
-                        <input type="checkbox" id="disable_animations" />
+                        <input id="disable_animations" type="checkbox" />
                         <label for="disable_animations">Disable Login Animations</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="disable_music" />
+                        <input id="disable_music" type="checkbox" />
                         <label for="disable_music">Disable Login Music</label>
                     </div>
                 </div>
@@ -36,7 +37,7 @@
                     <label>Password</label>
                     <input type="password" />
                     <div class="checkbox">
-                        <input class="custom-checkbox" type="checkbox" id="remember_me" />
+                        <input id="remember_me" class="custom-checkbox" type="checkbox" />
                         <label class="custom-checkbox-label" for="remember_me">Remember Me</label>
                     </div>
                     <label>Region/Language</label>
@@ -57,3 +58,4 @@
         </div>
     </main>
 </div>
+<script src="assets/js/script.js"></script>
