@@ -102,13 +102,11 @@ function main() {
     document.getElementById("password").addEventListener("input", activeSignIn);
     if (getAnimationState() === null) {
         setAnimationState("play");
-    } else {
-        loadAnimationState();
     }
     if (getMusicState() === null) {
         setMusicState("play");
-    } else {
-        loadMusicState();
     }
+    loadAnimationState();
+    loadMusicState();
 }
 main();
