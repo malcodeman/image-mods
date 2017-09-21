@@ -105,6 +105,7 @@ input {
 
 @media (min-width: 992px) {
 	.main {
+		border-left: 1px solid #1E282D;
 		flex-grow: 0;
 		min-width: 279px;
 	}
@@ -122,30 +123,12 @@ input {
 }
 
 
-/* Removes max-width because main-content needs to scale with main */
-
-@media (min-width: 992px) {
-	.main-content {
-		max-width: unset;
-	}
-}
-
-
-/* Input password */
-
-@media (min-width: 992px) {
-	.main-content {
-		border-left: 1px solid #1E282D;
-	}
-}
-
-
 /* Header */
 
 .main header .header-content {
 	display: flex;
 	flex-direction: column;
-	padding: 1rem;
+	padding: 1.2rem;
 }
 
 
@@ -242,7 +225,7 @@ input[type=password]:focus {
 .main footer .footer-content {
 	display: flex;
 	flex-direction: column;
-	padding: 1rem;
+	padding: 1.2rem;
 }
 
 
