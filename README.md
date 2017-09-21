@@ -1,6 +1,8 @@
 # League of Legends Client
 Web version of league of legends game client.
 
+Made with [hextech style guide](http://nexus.leagueoflegends.com/2016/12/the-visual-language-of-hextech/) in mind.
+
 ![Homepage image](screenshots/homepage.png)
 
 ## Assets
