@@ -1,61 +1,76 @@
 <!DOCTYPE html>
-<meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600" rel="stylesheet">
+<meta charset="UTF-8" />
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600"
+  rel="stylesheet"
+/>
 <title>League of Legends</title>
 <link href="assets/css/style.css" rel="stylesheet" />
 <div class="page">
-    <div class="login-screen">
-        <video id="login_screen" class="video" loop="loop" muted="muted" src="assets/images/login-screens/blood_moon_diana.mp4"></video>
-        <audio id="login_music" loop="loop" src="assets/music/blood_moon_diana.mp3"></audio>
-        <!-- Place for another element -->
-        <header></header>
-        <footer>
-            <div class="footer-content">
-                <img class="company-logo" src="assets/images/logos/riot_logo.png" />
-                <div class="divider"></div>
-                <div class="controls-content">
-                    <div class="checkbox">
-                        <input id="disable_animations" type="checkbox" />
-                        <label for="disable_animations">Disable Login Animations</label>
-                    </div>
-                    <div class="checkbox">
-                        <input id="disable_music" type="checkbox" />
-                        <label for="disable_music">Disable Login Music</label>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
-    <main class="main">
-        <div class="main-content">
-            <header>
-                <div class="header-content">
-                    <img class="game-logo" src="assets/images/logos/lol_logo.png" />
-                    <h1>Sign in</h1>
-                    <label>Username</label>
-                    <input id="username" autofocus="autofocus" type="text" />
-                    <label>Password</label>
-                    <input id="password" type="password" />
-                    <div class="checkbox">
-                        <input id="remember_me" class="custom-checkbox" type="checkbox" />
-                        <label class="custom-checkbox-label" for="remember_me">Remember Me</label>
-                    </div>
-                    <label>Region/Language</label>
-                    <button>EU Nordic and East (English) &#9662;</button>
-                </div>
-            </header>
-            <footer>
-                <div class="footer-content">
-                    <button id="sign_in">Sign in</button>
-                    <a href="#">Forgot your username? &#8599;</a>
-                    <a href="#">Forgot your password? &#8599;</a>
-                    <a href="#">Create an account &#8599;</a>
-                </div>
-                <div class="version-content">
-                    <span>V7.16-4923874.4950475</span>
-                </div>
-            </footer>
+  <div class="login-screen">
+    <video
+      id="login_screen"
+      class="video"
+      loop="loop"
+      muted="muted"
+      src="assets/images/login-screens/blood_moon_diana.mp4"
+    ></video>
+    <audio
+      id="login_music"
+      loop="loop"
+      src="assets/music/blood_moon_diana.mp3"
+    ></audio>
+    <!-- Place for another element -->
+    <header></header>
+    <footer>
+      <div class="footer-content">
+        <img class="company-logo" src="assets/images/logos/riot_logo.png" />
+        <div class="divider"></div>
+        <div class="controls-content">
+          <div class="checkbox">
+            <input id="disable_animations" type="checkbox" />
+            <label for="disable_animations">Disable Login Animations</label>
+          </div>
+          <div class="checkbox">
+            <input id="disable_music" type="checkbox" />
+            <label for="disable_music">Disable Login Music</label>
+          </div>
         </div>
-    </main>
+      </div>
+    </footer>
+  </div>
+  <main class="main">
+    <div class="main-content">
+      <header>
+        <div class="header-content">
+          <img class="game-logo" src="assets/images/logos/lol_logo.png" />
+          <h1>Sign in</h1>
+          <label>Username</label>
+          <input id="username" autofocus="autofocus" type="text" />
+          <label>Password</label>
+          <input id="password" type="password" />
+          <div class="checkbox">
+            <input id="remember_me" class="custom-checkbox" type="checkbox" />
+            <label class="custom-checkbox-label" for="remember_me"
+              >Remember Me</label
+            >
+          </div>
+          <label>Region/Language</label>
+          <button>EU Nordic and East (English) &#9662;</button>
+        </div>
+      </header>
+      <footer>
+        <div class="footer-content">
+          <button id="sign_in">Sign in</button>
+          <a href="#">Forgot your username? &#8599;</a>
+          <a href="#">Forgot your password? &#8599;</a>
+          <a href="#">Create an account &#8599;</a>
+        </div>
+        <div class="version-content">
+          <span>V7.16-4923874.4950475</span>
+        </div>
+      </footer>
+    </div>
+  </main>
 </div>
 <script src="assets/js/script.js"></script>
