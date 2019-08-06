@@ -1,30 +1,20 @@
-# League of Legends Client
+# Tenet
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/malcodeman/league-of-legends-client/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/malcodeman/tenet/blob/master/LICENSE)
 
-Web version of league of legends game client.
+A non-profit organization.
 
-Made with [hextech style guide](http://nexus.leagueoflegends.com/2016/12/the-visual-language-of-hextech/) in mind.
+![Screenshot](docs/images/screenshot.png)
 
-![Homepage image](screenshots/homepage.png)
+## Getting started
 
-## Assets
-
-### Login Screens
-
-- [Blood Moon Diana](https://www.youtube.com/watch?v=myEKQkKdKtQ)
-- [Bit Rush: Arcade Ahri](https://www.youtube.com/watch?v=DYW-kEiCnJI)
-
-### Fonts
-
-- [Roboto](https://fonts.google.com/specimen/Roboto)
-
-### Logos
-
-- [Riot](https://www.riotgames.com/sites/default/files/asset-kit-assets/files/Riot_logo_WHITE_TEXT.png)
-- [League of Legends](https://www.riotgames.com/sites/default/files/asset-kit-assets/files/LOL_LOGO_RGB_SMALL%20copy.PNG)
+```
+git clone https://github.com/malcodeman/tenet.git tenet
+cd tenet
+yarn install && yarn develop
+```
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+[MIT](./LICENSE)
