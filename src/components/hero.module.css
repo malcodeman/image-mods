@@ -4,6 +4,7 @@
   align-items: center;
   gap: 2.5em;
   margin-top: 2em;
+  margin-bottom: 7em;
 }
 
 @media (min-width: 768px) {
