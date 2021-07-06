@@ -43,12 +43,16 @@ function GridItem(props: props) {
       justifyContent="space-between"
       {...rest}
     >
-      <Box mr="4">{item.icon}</Box>
-      <Box>
-        <Text fontWeight="bold">{item.title}</Text>
-        <Text fontSize="sm">{item.description}</Text>
-      </Box>
-      <Box>
+      <Flex>
+        <Box mr="4" display={{ base: "none", sm: "initial" }}>
+          {item.icon}
+        </Box>
+        <Box>
+          <Text fontWeight="bold">{item.title}</Text>
+          <Text fontSize="sm">{item.description}</Text>
+        </Box>
+      </Flex>
+      <Box display={{ base: "none", sm: "initial" }}>
         <ChevronRight size="16" />
       </Box>
     </Flex>
@@ -62,7 +66,7 @@ function Home() {
         <Text fontSize="2xl" fontWeight="bold" align="center" mb="4">
           Most Popular Image Tools
         </Text>
-        <SimpleGrid columns={2} spacing={2}>
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
           {tools.map((item) => (
             <GridItem key={item.title} item={item} />
           ))}
