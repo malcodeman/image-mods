@@ -1,6 +1,10 @@
 import React from "react";
-import { Box, Flex, Container } from "@chakra-ui/react";
+import { Box, Flex, Container, Button } from "@chakra-ui/react";
 import { Minimize } from "react-feather";
+import Compressor from "compressorjs";
+import { saveAs } from "file-saver";
+import * as R from "ramda";
+import { useToast } from "@chakra-ui/react";
 
 import FileUploader from "../components/FileUploader";
 import Table from "../components/Table";
@@ -16,7 +20,18 @@ const columns = [
     Header: "Size",
     accessor: "size",
   },
+  {
+    Header: "",
+    accessor: "blob",
+    Cell: function downloadBlob(props: any) {
+      const image: File = props.row.original;
+      return (
+        <Button onClick={() => saveAs(image, image.name)}>Download</Button>
+      );
+    },
+  },
 ];
+
 const links = [
   {
     value: "/",
@@ -29,9 +44,40 @@ const links = [
 ];
 
 function Compress() {
-  const [files, setFiles] = React.useState<File[]>([]);
-  function onDrop(acceptedFiles: File[]) {
-    setFiles([...files, ...acceptedFiles]);
+  const toast = useToast();
+  const [compressedFiles, setCompressedFiles] = React.useState<Blob[]>([]);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+  async function onDrop(acceptedFiles: File[]) {
+    try {
+      setIsLoading(true);
+      const files = await Promise.all(
+        R.map(async (file) => {
+          return await compressFile(file);
+        }, acceptedFiles)
+      );
+      setCompressedFiles([...compressedFiles, ...files]);
+    } catch (err) {
+      toast({
+        title: "An error occurred.",
+        description: err.message,
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  async function compressFile(file: File): Promise<Blob> {
+    return new Promise<Blob>((resolve, reject) => {
+      new Compressor(file, {
+        quality: 0.8,
+        success: resolve,
+        error: reject,
+      });
+    });
   }
 
   return (
@@ -47,9 +93,9 @@ function Compress() {
           />
         </Box>
         <Box mb="4">
-          <FileUploader onDrop={onDrop} />
+          <FileUploader onDrop={onDrop} isLoading={isLoading} />
         </Box>
-        <Table columns={columns} data={files} />
+        <Table columns={columns} data={compressedFiles} />
       </Container>
     </Flex>
   );

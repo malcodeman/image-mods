@@ -4,16 +4,18 @@ import { useDropzone, DropzoneOptions, FileRejection } from "react-dropzone";
 
 type props = {
   onDrop: (acceptedFiles: File[], rejectedFiles: FileRejection[]) => void;
+  isLoading?: boolean;
 };
 
 function FileUploader(props: props) {
-  const { onDrop } = props;
+  const { onDrop, isLoading } = props;
   const bg = useColorModeValue("gray.100", "gray.900");
   const bgIsDragActive = useColorModeValue("blue.100", "blue.900");
   const options: DropzoneOptions = {
     noClick: true,
     noKeyboard: true,
     onDrop,
+    disabled: isLoading,
   };
   const { getRootProps, getInputProps, open, isDragActive } =
     useDropzone(options);
@@ -29,7 +31,7 @@ function FileUploader(props: props) {
       {...getRootProps()}
     >
       <Text mb="2">Drop files here to upload...</Text>
-      <Button onClick={open}>
+      <Button onClick={open} isLoading={isLoading}>
         <Text>Browse files</Text>
       </Button>
       <input {...getInputProps()} />
