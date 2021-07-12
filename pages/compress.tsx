@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Flex, Container, Button } from "@chakra-ui/react";
-import { Minimize, Download } from "react-feather";
+import { Minimize, Download, Trash2 } from "react-feather";
 import Compressor from "compressorjs";
 import { saveAs } from "file-saver";
 import * as R from "ramda";
@@ -56,6 +56,7 @@ function Compress() {
           const image: File = props.row.original;
           return (
             <Button
+              size="sm"
               leftIcon={<Download size={16} />}
               onClick={() => saveAs(image, image.name)}
             >
@@ -63,41 +64,28 @@ function Compress() {
             </Button>
           );
         },
-        Header: function blobHeader() {
-          async function downloadZip() {
-            try {
-              const zip = new Zip();
-              for (const file of compressedFiles) {
-                zip.file(file.name, file);
-              }
-              const content = await zip.generateAsync({ type: "blob" });
-              saveAs(content, "imagemods.zip");
-            } catch (err) {
-              toast({
-                title: "An error occurred.",
-                description: err.message,
-                status: "error",
-                duration: 9000,
-                isClosable: true,
-              });
-            }
-          }
-
-          return (
-            <Button leftIcon={<Download size={16} />} onClick={downloadZip}>
-              Download ZIP
-            </Button>
-          );
-        },
       },
     ],
-    [compressedFiles, toast]
+    []
   );
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [isCompressLoading, setIsCompressLoading] =
+    React.useState<boolean>(false);
+  const [isZipLoading, setIsZipLoading] = React.useState<boolean>(false);
+  const isTableEmpty: boolean = compressedFiles.length === 0;
+
+  function showToast(description: string) {
+    toast({
+      title: "An error occurred.",
+      description: description,
+      status: "error",
+      duration: 9000,
+      isClosable: true,
+    });
+  }
 
   async function onDrop(acceptedFiles: File[]) {
     try {
-      setIsLoading(true);
+      setIsCompressLoading(true);
       const files = await Promise.all(
         R.map(async (file) => {
           return await compressFile(file);
@@ -105,15 +93,9 @@ function Compress() {
       );
       setCompressedFiles([...compressedFiles, ...files]);
     } catch (err) {
-      toast({
-        title: "An error occurred.",
-        description: err.message,
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      });
+      showToast(err.message);
     } finally {
-      setIsLoading(false);
+      setIsCompressLoading(false);
     }
   }
 
@@ -129,6 +111,22 @@ function Compress() {
     });
   }
 
+  async function downloadZip() {
+    try {
+      setIsZipLoading(true);
+      const zip = new Zip();
+      for (const file of compressedFiles) {
+        zip.file(file.name, file);
+      }
+      const content = await zip.generateAsync({ type: "blob" });
+      saveAs(content, "imagemods.zip");
+    } catch (err) {
+      showToast(err.message);
+    } finally {
+      setIsZipLoading(false);
+    }
+  }
+
   return (
     <Flex paddingTop="4" paddingBottom="4">
       <Container maxWidth="container.lg">
@@ -142,11 +140,29 @@ function Compress() {
           />
         </Box>
         <Box mb="4">
-          <FileUploader onDrop={onDrop} isLoading={isLoading} />
+          <FileUploader onDrop={onDrop} isLoading={isCompressLoading} />
         </Box>
-        {compressedFiles.length > 0 && (
-          <Table columns={columns} data={compressedFiles} />
-        )}
+        <Box mb="4">
+          <Button
+            mr="4"
+            size="sm"
+            leftIcon={<Trash2 size={16} />}
+            isDisabled={isTableEmpty}
+            onClick={() => setCompressedFiles([])}
+          >
+            Clear list
+          </Button>
+          <Button
+            size="sm"
+            leftIcon={<Download size={16} />}
+            isDisabled={isTableEmpty}
+            isLoading={isZipLoading}
+            onClick={downloadZip}
+          >
+            Download ZIP
+          </Button>
+        </Box>
+        {!isTableEmpty && <Table columns={columns} data={compressedFiles} />}
       </Container>
     </Flex>
   );

@@ -29,7 +29,7 @@ function Table(props: props) {
   });
 
   return (
-    <ChakraTable {...getTableProps()}>
+    <ChakraTable size="sm" {...getTableProps()}>
       <Thead>
         {headerGroups.map((group) => (
           // eslint-disable-next-line react/jsx-key
