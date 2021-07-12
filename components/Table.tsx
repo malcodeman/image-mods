@@ -6,6 +6,7 @@ import {
   Th,
   Tbody,
   Td,
+  Tfoot,
 } from "@chakra-ui/react";
 
 type props = {
@@ -15,19 +16,25 @@ type props = {
 
 function Table(props: props) {
   const { columns, data } = props;
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({
-      columns,
-      data,
-    });
+  const {
+    getTableProps,
+    getTableBodyProps,
+    prepareRow,
+    headerGroups,
+    rows,
+    footerGroups,
+  } = useTable({
+    columns,
+    data,
+  });
 
   return (
     <ChakraTable {...getTableProps()}>
       <Thead>
-        {headerGroups.map((headerGroup) => (
+        {headerGroups.map((group) => (
           // eslint-disable-next-line react/jsx-key
-          <Tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
+          <Tr {...group.getHeaderGroupProps()}>
+            {group.headers.map((column) => (
               // eslint-disable-next-line react/jsx-key
               <Th {...column.getHeaderProps()}>{column.render("Header")}</Th>
             ))}
@@ -48,6 +55,19 @@ function Table(props: props) {
           );
         })}
       </Tbody>
+      <Tfoot>
+        {footerGroups.map((group) => {
+          return (
+            // eslint-disable-next-line react/jsx-key
+            <Tr {...group.getFooterGroupProps()}>
+              {group.headers.map((column) => (
+                // eslint-disable-next-line react/jsx-key
+                <Td {...column.getFooterProps()}>{column.render("Footer")}</Td>
+              ))}
+            </Tr>
+          );
+        })}
+      </Tfoot>
     </ChakraTable>
   );
 }

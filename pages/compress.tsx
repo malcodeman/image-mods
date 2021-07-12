@@ -1,10 +1,11 @@
 import React from "react";
 import { Box, Flex, Container, Button } from "@chakra-ui/react";
-import { Minimize } from "react-feather";
+import { Minimize, Download } from "react-feather";
 import Compressor from "compressorjs";
 import { saveAs } from "file-saver";
 import * as R from "ramda";
 import { useToast } from "@chakra-ui/react";
+import Zip from "jszip";
 
 import FileUploader from "../components/FileUploader";
 import Table from "../components/Table";
@@ -12,30 +13,6 @@ import Breadcrumb from "../components/Breadcrumb";
 import ToolTitle from "../components/ToolTitle";
 
 import utils from "../utils";
-
-const columns = [
-  {
-    Header: "Name",
-    accessor: "name",
-  },
-  {
-    Header: "Size",
-    accessor: "size",
-    Cell: function size(props: any) {
-      return <>{utils.bytesToSize(props.value)}</>;
-    },
-  },
-  {
-    Header: "",
-    accessor: "blob",
-    Cell: function downloadBlob(props: any) {
-      const image: File = props.row.original;
-      return (
-        <Button onClick={() => saveAs(image, image.name)}>Download</Button>
-      );
-    },
-  },
-];
 
 const links = [
   {
@@ -50,7 +27,72 @@ const links = [
 
 function Compress() {
   const toast = useToast();
-  const [compressedFiles, setCompressedFiles] = React.useState<Blob[]>([]);
+  const [compressedFiles, setCompressedFiles] = React.useState<File[]>([]);
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "Name",
+        accessor: "name",
+      },
+      {
+        Header: "Size",
+        accessor: "size",
+        Cell: function sizeCell(props: any) {
+          return <>{utils.bytesToSize(props.value)}</>;
+        },
+        Footer: function sizeFooter(props: any) {
+          const files: File[] = props.data;
+          return (
+            <>
+              Total:{" "}
+              {utils.bytesToSize(R.sum(R.map((item) => item.size, files)))}
+            </>
+          );
+        },
+      },
+      {
+        accessor: "blob",
+        Cell: function blobCell(props: any) {
+          const image: File = props.row.original;
+          return (
+            <Button
+              leftIcon={<Download size={16} />}
+              onClick={() => saveAs(image, image.name)}
+            >
+              Download
+            </Button>
+          );
+        },
+        Header: function blobHeader() {
+          async function downloadZip() {
+            try {
+              const zip = new Zip();
+              for (const file of compressedFiles) {
+                zip.file(file.name, file);
+              }
+              const content = await zip.generateAsync({ type: "blob" });
+              saveAs(content, "imagemods.zip");
+            } catch (err) {
+              toast({
+                title: "An error occurred.",
+                description: err.message,
+                status: "error",
+                duration: 9000,
+                isClosable: true,
+              });
+            }
+          }
+
+          return (
+            <Button leftIcon={<Download size={16} />} onClick={downloadZip}>
+              Download ZIP
+            </Button>
+          );
+        },
+      },
+    ],
+    [compressedFiles, toast]
+  );
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   async function onDrop(acceptedFiles: File[]) {
@@ -75,11 +117,13 @@ function Compress() {
     }
   }
 
-  async function compressFile(file: File): Promise<Blob> {
-    return new Promise<Blob>((resolve, reject) => {
+  async function compressFile(file: File): Promise<File> {
+    return new Promise<File>((resolve, reject) => {
       new Compressor(file, {
         quality: 0.8,
-        success: resolve,
+        success: (result) => {
+          resolve(new File([result], file.name, { type: result.type }));
+        },
         error: reject,
       });
     });
@@ -100,7 +144,9 @@ function Compress() {
         <Box mb="4">
           <FileUploader onDrop={onDrop} isLoading={isLoading} />
         </Box>
-        <Table columns={columns} data={compressedFiles} />
+        {compressedFiles.length > 0 && (
+          <Table columns={columns} data={compressedFiles} />
+        )}
       </Container>
     </Flex>
   );
