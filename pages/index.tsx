@@ -6,7 +6,7 @@ import {
   Container,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { ChevronRight, Crop, Minimize } from "react-feather";
+import { ChevronRight, Crop, Layers, Minimize } from "react-feather";
 import Link from "next/link";
 
 const tools = [
@@ -15,12 +15,21 @@ const tools = [
     description: "Reduce the size of your Images without losing quality",
     icon: <Minimize size="24" color="#3d99f5" />,
     href: "/compress",
+    isDisabled: false,
   },
   {
     title: "Crop Image",
     description: "Crop Images by defining a rectangle in pixels or percentages",
     icon: <Crop size="24" color="#7961f2" />,
     href: "/crop",
+    isDisabled: true,
+  },
+  {
+    title: "Image to PDF",
+    description: "Transform Images to PDF",
+    icon: <Layers size="24" color="#ffb700" />,
+    href: "/transform",
+    isDisabled: true,
   },
 ];
 
@@ -30,6 +39,7 @@ type props = {
     description: string;
     icon: JSX.Element;
     href: string;
+    isDisabled: boolean;
   };
 };
 
@@ -38,12 +48,12 @@ function GridItem(props: props) {
   const bg = useColorModeValue("gray.100", "gray.900");
 
   return (
-    <Link href={item.href}>
+    <Link href={item.isDisabled ? "/" : item.href}>
       <a>
         <Flex
-          backgroundColor={bg}
+          backgroundColor={item.isDisabled ? "rgba(0,0,0,0.1)" : bg}
           borderRadius="md"
-          cursor="pointer"
+          cursor={item.isDisabled ? "not-allowed" : "pointer"}
           padding="4"
           border="2px solid rgba(0,0,0,0.1)"
           justifyContent="space-between"
