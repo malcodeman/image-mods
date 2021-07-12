@@ -11,6 +11,8 @@ import Table from "../components/Table";
 import Breadcrumb from "../components/Breadcrumb";
 import ToolTitle from "../components/ToolTitle";
 
+import utils from "../utils";
+
 const columns = [
   {
     Header: "Name",
@@ -19,6 +21,9 @@ const columns = [
   {
     Header: "Size",
     accessor: "size",
+    Cell: function size(props: any) {
+      return <>{utils.bytesToSize(props.value)}</>;
+    },
   },
   {
     Header: "",
