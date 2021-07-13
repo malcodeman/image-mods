@@ -20,7 +20,7 @@ jobs:
         run: yarn build
 
       - name: Install Surge
-        run: yarn global add surge
+        run: npm install -g surge
 
       - name: Deploy to surge
         run: surge ./out imagemods.surge.sh --token ${{secrets.SURGE_TOKEN}}
