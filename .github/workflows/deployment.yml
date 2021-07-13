@@ -14,10 +14,10 @@ jobs:
           node-version: "14"
 
       - name: Install packages
-        run: yarn install
+        run: npm install
 
       - name: Build the app
-        run: yarn build
+        run: npm run build
 
       - name: Install Surge
         run: npm install -g surge
