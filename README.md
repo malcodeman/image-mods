@@ -5,7 +5,15 @@
 
 All the tools you’ll need to be more productive and work smarter with images.
 
-![Screenshot](docs/images/screenshot.png)
+![Screenshot](readme/screenshot.png)
+
+## Getting started
+
+```
+git clone https://github.com/malcodeman/image-mods.git image-mods
+cd image-mods
+yarn install && yarn dev
+```
 
 ## License
 
