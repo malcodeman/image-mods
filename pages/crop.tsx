@@ -38,7 +38,7 @@ function Crop() {
   return (
     <React.Fragment>
       <Head>
-        <title>Image Mods | Crop</title>
+        <title>Crop | Image Mods</title>
       </Head>
       <Flex paddingTop="4" paddingBottom="4">
         <Container maxWidth="container.lg">

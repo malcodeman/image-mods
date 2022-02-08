@@ -131,7 +131,7 @@ function Compress() {
   return (
     <React.Fragment>
       <Head>
-        <title>Image Mods | Compress</title>
+        <title>Compress | Image Mods</title>
       </Head>
       <Flex paddingTop="4" paddingBottom="4">
         <Container maxWidth="container.lg">
