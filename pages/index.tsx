@@ -1,3 +1,5 @@
+import React from "react";
+import Head from "next/head";
 import {
   SimpleGrid,
   Text,
@@ -79,18 +81,23 @@ function GridItem(props: props) {
 
 function Home() {
   return (
-    <Flex minH="100vh" alignItems="center">
-      <Container maxWidth="container.lg">
-        <Text fontSize="2xl" fontWeight="bold" align="center" mb="4">
-          Most Popular Image Tools
-        </Text>
-        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
-          {tools.map((item) => (
-            <GridItem key={item.title} item={item} />
-          ))}
-        </SimpleGrid>
-      </Container>
-    </Flex>
+    <React.Fragment>
+      <Head>
+        <title>Image Mods</title>
+      </Head>
+      <Flex minH="100vh" alignItems="center">
+        <Container maxWidth="container.lg">
+          <Text fontSize="2xl" fontWeight="bold" align="center" mb="4">
+            Most Popular Image Tools
+          </Text>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
+            {tools.map((item) => (
+              <GridItem key={item.title} item={item} />
+            ))}
+          </SimpleGrid>
+        </Container>
+      </Flex>
+    </React.Fragment>
   );
 }
 

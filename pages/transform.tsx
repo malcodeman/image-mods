@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import { Box, Flex, Container } from "@chakra-ui/react";
 import { Layers } from "react-feather";
 
@@ -35,23 +36,28 @@ function Transform() {
   }
 
   return (
-    <Flex paddingTop="4" paddingBottom="4">
-      <Container maxWidth="container.lg">
-        <Box mb="10">
-          <Breadcrumb links={links} />
-        </Box>
-        <Box mb="4">
-          <ToolTitle
-            title="Transform Image"
-            icon={<Layers size="24" color="#ffb700" />}
-          />
-        </Box>
-        <Box mb="4">
-          <FileUploader onDrop={onDrop} />
-        </Box>
-        <Table columns={columns} data={files} />
-      </Container>
-    </Flex>
+    <React.Fragment>
+      <Head>
+        <title>Image Mods | Transform</title>
+      </Head>
+      <Flex paddingTop="4" paddingBottom="4">
+        <Container maxWidth="container.lg">
+          <Box mb="10">
+            <Breadcrumb links={links} />
+          </Box>
+          <Box mb="4">
+            <ToolTitle
+              title="Transform Image"
+              icon={<Layers size="24" color="#ffb700" />}
+            />
+          </Box>
+          <Box mb="4">
+            <FileUploader onDrop={onDrop} />
+          </Box>
+          <Table columns={columns} data={files} />
+        </Container>
+      </Flex>
+    </React.Fragment>
   );
 }
 

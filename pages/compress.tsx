@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import { Box, Flex, Container, Button } from "@chakra-ui/react";
 import { Minimize, Download, Trash2 } from "react-feather";
 import Compressor from "compressorjs";
@@ -128,43 +129,48 @@ function Compress() {
   }
 
   return (
-    <Flex paddingTop="4" paddingBottom="4">
-      <Container maxWidth="container.lg">
-        <Box mb="10">
-          <Breadcrumb links={links} />
-        </Box>
-        <Box mb="4">
-          <ToolTitle
-            title="Compress Image"
-            icon={<Minimize size="24" color="#3d99f5" />}
-          />
-        </Box>
-        <Box mb="4">
-          <FileUploader onDrop={onDrop} isLoading={isCompressLoading} />
-        </Box>
-        <Box mb="4">
-          <Button
-            mr="4"
-            size="sm"
-            leftIcon={<Trash2 size={16} />}
-            isDisabled={isTableEmpty}
-            onClick={() => setCompressedFiles([])}
-          >
-            Clear list
-          </Button>
-          <Button
-            size="sm"
-            leftIcon={<Download size={16} />}
-            isDisabled={isTableEmpty}
-            isLoading={isZipLoading}
-            onClick={downloadZip}
-          >
-            Download ZIP
-          </Button>
-        </Box>
-        {!isTableEmpty && <Table columns={columns} data={compressedFiles} />}
-      </Container>
-    </Flex>
+    <React.Fragment>
+      <Head>
+        <title>Image Mods | Compress</title>
+      </Head>
+      <Flex paddingTop="4" paddingBottom="4">
+        <Container maxWidth="container.lg">
+          <Box mb="10">
+            <Breadcrumb links={links} />
+          </Box>
+          <Box mb="4">
+            <ToolTitle
+              title="Compress Image"
+              icon={<Minimize size="24" color="#3d99f5" />}
+            />
+          </Box>
+          <Box mb="4">
+            <FileUploader onDrop={onDrop} isLoading={isCompressLoading} />
+          </Box>
+          <Box mb="4">
+            <Button
+              mr="4"
+              size="sm"
+              leftIcon={<Trash2 size={16} />}
+              isDisabled={isTableEmpty}
+              onClick={() => setCompressedFiles([])}
+            >
+              Clear list
+            </Button>
+            <Button
+              size="sm"
+              leftIcon={<Download size={16} />}
+              isDisabled={isTableEmpty}
+              isLoading={isZipLoading}
+              onClick={downloadZip}
+            >
+              Download ZIP
+            </Button>
+          </Box>
+          {!isTableEmpty && <Table columns={columns} data={compressedFiles} />}
+        </Container>
+      </Flex>
+    </React.Fragment>
   );
 }
 

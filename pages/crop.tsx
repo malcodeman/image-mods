@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import { Box, Flex, Container } from "@chakra-ui/react";
 import { Crop as CropIcon } from "react-feather";
 
@@ -35,23 +36,28 @@ function Crop() {
   }
 
   return (
-    <Flex paddingTop="4" paddingBottom="4">
-      <Container maxWidth="container.lg">
-        <Box mb="10">
-          <Breadcrumb links={links} />
-        </Box>
-        <Box mb="4">
-          <ToolTitle
-            title="Crop Image"
-            icon={<CropIcon size="24" color="#7961f2" />}
-          />
-        </Box>
-        <Box mb="4">
-          <FileUploader onDrop={onDrop} />
-        </Box>
-        <Table columns={columns} data={files} />
-      </Container>
-    </Flex>
+    <React.Fragment>
+      <Head>
+        <title>Image Mods | Crop</title>
+      </Head>
+      <Flex paddingTop="4" paddingBottom="4">
+        <Container maxWidth="container.lg">
+          <Box mb="10">
+            <Breadcrumb links={links} />
+          </Box>
+          <Box mb="4">
+            <ToolTitle
+              title="Crop Image"
+              icon={<CropIcon size="24" color="#7961f2" />}
+            />
+          </Box>
+          <Box mb="4">
+            <FileUploader onDrop={onDrop} />
+          </Box>
+          <Table columns={columns} data={files} />
+        </Container>
+      </Flex>
+    </React.Fragment>
   );
 }
 
