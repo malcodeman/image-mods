@@ -10,11 +10,12 @@ All the tools you’ll need to be more productive and work smarter with images.
 ## Getting started
 
 ```
-git clone https://github.com/malcodeman/image-mods.git image-mods
+git clone https://github.com/malcodeman/image-mods.git
 cd image-mods
-yarn install && yarn dev
+yarn install
+yarn dev
 ```
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+[MIT](./LICENSE)
