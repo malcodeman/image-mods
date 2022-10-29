@@ -10,7 +10,7 @@
     "deploy": "yarn build && surge out imagemods.surge.sh"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.6.4",
+    "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "compressorjs": "^1.2.1",
