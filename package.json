@@ -16,7 +16,7 @@
     "compressorjs": "^1.0.7",
     "file-saver": "^2.0.5",
     "framer-motion": "^4",
-    "jszip": "^3.6.0",
+    "jszip": "^3.8.0",
     "next": "11.0.1",
     "ramda": "^0.27.1",
     "react": "17.0.2",
