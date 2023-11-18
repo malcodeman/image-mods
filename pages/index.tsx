@@ -50,31 +50,29 @@ function GridItem(props: props) {
   const bg = useColorModeValue("gray.100", "gray.900");
 
   return (
-    <Link href={item.isDisabled ? "/" : item.href}>
-      <a>
-        <Flex
-          backgroundColor={item.isDisabled ? "rgba(0,0,0,0.1)" : bg}
-          borderRadius="md"
-          cursor={item.isDisabled ? "not-allowed" : "pointer"}
-          padding="4"
-          border="2px solid rgba(0,0,0,0.1)"
-          justifyContent="space-between"
-          {...rest}
-        >
-          <Flex>
-            <Box mr="4" display={{ base: "none", sm: "initial" }}>
-              {item.icon}
-            </Box>
-            <Box>
-              <Text fontWeight="bold">{item.title}</Text>
-              <Text fontSize="sm">{item.description}</Text>
-            </Box>
-          </Flex>
-          <Box display={{ base: "none", sm: "initial" }}>
-            <ChevronRight size="16" />
+    <Link href={item.isDisabled ? "/" : item.href} passHref>
+      <Flex
+        backgroundColor={item.isDisabled ? "rgba(0,0,0,0.1)" : bg}
+        borderRadius="md"
+        cursor={item.isDisabled ? "not-allowed" : "pointer"}
+        padding="4"
+        border="2px solid rgba(0,0,0,0.1)"
+        justifyContent="space-between"
+        {...rest}
+      >
+        <Flex>
+          <Box mr="4" display={{ base: "none", sm: "initial" }}>
+            {item.icon}
+          </Box>
+          <Box>
+            <Text fontWeight="bold">{item.title}</Text>
+            <Text fontSize="sm">{item.description}</Text>
           </Box>
         </Flex>
-      </a>
+        <Box display={{ base: "none", sm: "initial" }}>
+          <ChevronRight size="16" />
+        </Box>
+      </Flex>
     </Link>
   );
 }
