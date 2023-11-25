@@ -94,7 +94,9 @@ function Compress() {
       );
       setCompressedFiles([...compressedFiles, ...files]);
     } catch (err) {
-      showToast(err.message);
+      if (err instanceof Error) {
+        showToast(err.message);
+      }
     } finally {
       setIsCompressLoading(false);
     }
@@ -122,7 +124,9 @@ function Compress() {
       const content = await zip.generateAsync({ type: "blob" });
       saveAs(content, "imagemods.zip");
     } catch (err) {
-      showToast(err.message);
+      if (err instanceof Error) {
+        showToast(err.message);
+      }
     } finally {
       setIsZipLoading(false);
     }
