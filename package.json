@@ -18,7 +18,7 @@
     "framer-motion": "^10.16.5",
     "jszip": "^3.10.1",
     "next": "13",
-    "ramda": "^0.29.1",
+    "ramda": "^0.30.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
