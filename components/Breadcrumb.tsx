@@ -3,7 +3,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
 } from "@chakra-ui/react";
-import { ChevronRight } from "react-feather";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 type props = {

@@ -8,7 +8,7 @@ import {
   Container,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { ChevronRight, Crop, Layers, Minimize } from "react-feather";
+import { ChevronRight, Crop, Layers, Minimize } from "lucide-react";
 import Link from "next/link";
 
 const tools = [

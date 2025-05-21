@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import { Box, Flex, Container } from "@chakra-ui/react";
-import { Crop as CropIcon } from "react-feather";
+import { Crop as CropIcon } from "lucide-react";
 
 import FileUploader from "../components/FileUploader";
 import Table from "../components/Table";

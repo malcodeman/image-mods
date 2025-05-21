@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import { Box, Flex, Container, Button } from "@chakra-ui/react";
-import { Minimize, Download, Trash2 } from "react-feather";
+import { Minimize, Download, Trash2 } from "lucide-react";
 import Compressor from "compressorjs";
 import { saveAs } from "file-saver";
 import * as R from "ramda";
